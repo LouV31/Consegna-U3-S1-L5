@@ -24,7 +24,7 @@ class BatMan extends Component {
                 this.setState({ films: filmList });
             }
         } catch (error) {
-            this.setState({ hasError: true, errorMessage: error.message });
+            this.setState({ hasError: true });
 
             console.log(error);
         } finally {
