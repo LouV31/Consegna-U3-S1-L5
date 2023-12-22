@@ -5,7 +5,7 @@ import Loading from "./Loading";
 
 class LordOfTheRings extends Component {
     state = {
-        searchQ: "lord%20of%20the%20rings",
+        searchQ: "Lord%20of%20the%20Rings",
         films: { Search: [] },
         isLoading: false,
     };

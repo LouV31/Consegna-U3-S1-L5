@@ -2,12 +2,15 @@ import { Col, Container, Row } from "react-bootstrap";
 
 import { Component } from "react";
 import Loading from "./Loading";
+import Error from "./Error";
 
 class BatMan extends Component {
     state = {
         searchQ: "Batman",
         films: { Search: [] },
         isLoading: false,
+        hasError: false,
+        errorMessage: "BLAAAAA",
     };
     URL = `http://www.omdbapi.com/?s=${this.state.searchQ}&apikey=438ff31f`;
 
@@ -21,6 +24,8 @@ class BatMan extends Component {
                 this.setState({ films: filmList });
             }
         } catch (error) {
+            this.setState({ hasError: true, errorMessage: error.message });
+
             console.log(error);
         } finally {
             this.setState({ isLoading: false });
@@ -41,6 +46,7 @@ class BatMan extends Component {
                                 <Loading />
                             </span>
                         )}
+                        {this.state.hasError && <Error message={this.state.errorMessage} />}
                     </h4>
                     <Row className="row row-cols-2 g-1 row-cols-sm-3 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 mb-5">
                         {filmsToDisplay.map((film, index) => (
